@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <header><h1>개인정보 수집 폼</h1></header>
+    <main>
+      <div>아래 양식을 작성하여 개인정보를 제출하세요.</div>
+      <br /><br />
+      <form>
+        <label for="name">이름 </label>
+        <input type="text" name="name" id="name" /><br /><br />
+
+        <label for="email">이메일 </label>
+        <input type="email" name="email" id="email" /><br /><br />
+
+        <label for="date">생년월일 </label>
+        <input type="date" name="date" id="date" /><br /><br />
+
+        <input type="radio" name="male" id="male" value="male" />
+        <label for="male">남성</label>
+        <input type="radio" name="male" id="female" value="female" />
+        <label for="female">여성</label>
+        <br /><br />
+
+        <label for="agree">개인정보 수집 및 이용에 동의합니다</label>
+        <input type="check" name="agree" id="agree" /><br /><br />
+
+        <input type="submit" value="제출" />
+      </form>
+    </main>
+  </body>
+</html>
