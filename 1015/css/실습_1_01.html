@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div1 {
+        font-size: 32px;
+        color: red;
+        text-align: right;
+      }
+      #div2 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+      #div3 {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        color: red;
+      }
+      #div3 > div {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <br />
+    <!-- 폰트사이즈 32px, 글씨 빨간색, 글씨 우측정렬 -->
+    <div id="div1">Hello CSS</div>
+
+    <br />
+    <!-- 글자는 기본을 따라감 -->
+    <!-- 가로 100px, 세로 100px, 배경색 파란색 -->
+    <div id="div2">Hello CSS</div>
+
+    <br />
+    <!-- 가로 200px, 세로 200px, 배경색 초록색, 글씨 빨간색-->
+    <div id="div3">
+      Hello CSS
+      <!-- 가로 100px, 세로 100px, 글씨 빨간색, 배경색 하늘색 -->
+      <div>Hello CSS</div>
+    </div>
+  </body>
+</html>
