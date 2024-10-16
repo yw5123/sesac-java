@@ -1,0 +1,53 @@
+body {
+  height: 200vh;
+}
+.big-box {
+  position: relative;
+  margin: 100px auto 0;
+  border: 5px solid black;
+  width: 600px;
+  height: 600px;
+}
+
+.small-box {
+  width: 100px;
+  height: 100px;
+}
+
+#red {
+  background-color: red;
+  position: sticky;
+  top: 100px;
+}
+
+#gold {
+  position: relative;
+  left: 100px;
+  background-color: gold;
+}
+
+#green {
+  position: absolute;
+  left: 200px;
+  top: 200px; 
+  /* top은 안 적어도 똑같은 위치에 있지만 명시적으로 적어주는 게 좋음 */
+  background-color: green;
+}
+
+#blue {
+  position: absolute;
+  top: 0px;
+  left: 200px;
+  background-color: blue;
+}
+
+#pink {
+  background-color: pink;
+}
+
+#violet {
+  position: fixed;
+  left: 100px;
+  top: 100px;
+  background-color: blueviolet;
+}

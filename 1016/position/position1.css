@@ -1,0 +1,58 @@
+/* id가 pin인 box에 style을 적용한 버전 */
+
+body {
+  height: 200vh;
+}
+.big-box {
+  position: relative;
+  margin: 100px auto 0;
+  border: 5px solid black;
+  width: 600px;
+  height: 600px;
+}
+
+.small-box {
+  width: 100px;
+  height: 100px;
+}
+
+#red {
+  position: fixed;
+  background-color: red;
+  z-index: 2;
+}
+
+#gold {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  background-color: gold;
+}
+
+#green {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  background-color: green;
+}
+
+#blue {
+  position: absolute;
+  top: 0px;
+  left: 200px;
+  background-color: blue;
+}
+
+#pink {
+  position: absolute;
+  top: 200px;
+  left: 0px;
+  background-color: pink;
+}
+
+#violet {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  background-color: blueviolet;
+}
