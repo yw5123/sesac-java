@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Gallery</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .card {
+        background-color: lightgray;
+        width: 300px;
+        margin: 10px;
+      }
+
+      .card > img {
+        width: 100%;
+      }
+
+      .card > h2,
+      .card > p {
+        padding: 0 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <img src="https://picsum.photos/200/300?random=1" />
+        <h2>카드 1</h2>
+        <p>카드의 내용을 작성하세요.</p>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/200/300?random=2" />
+        <h2>카드 2</h2>
+        <p>카드의 내용을 작성하세요.</p>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/200/300?random=3" />
+        <h2>카드 3</h2>
+        <p>카드의 내용을 작성하세요.</p>
+      </div>
+    </div>
+  </body>
+</html>
