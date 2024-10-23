@@ -133,9 +133,12 @@ const people = [
 
 // 사람에 대한 정보를 각각 출력
 for (const person of people) {
-  console.log(`이름: ${person.name}`);
-  console.log(`나이: ${person.age}`);
-  console.log(`성별: ${person.gender}`);
+  // console.log(`이름: ${person.name}`);
+  // console.log(`나이: ${person.age}`);
+  // console.log(`성별: ${person.gender}`);
+  for (let key in person) {
+    console.log(key, person[key]);
+  }
   console.log('-----');
 }
 // 이름이 alex인 사람에 대한 정보 출력
@@ -167,9 +170,27 @@ const new_people = {
     gender: null
   }
 }
-console.log(`alex의 정보: ${new_people['alex']}`);
-console.log(new_people['alex']);
+// console.log(`alex의 정보: ${new_people['alex']}`);
+// console.log(new_people['alex']);
+console.log(`alex의 정보: ${new_people.alex}`);
+console.log(new_people.alex);
 
 // 하지만 동명이인은?
 // 이 경우는 리스트로 작성하는 게 더 좋음
 // 이렇게 작성하는 게 더 편하고 합리적인 경우가 있다!
+
+const names = ['jun', 'ken', 'alex'];
+const ages = [15, 26, 37];
+const genders = ['M', 'F', null];
+
+const arrayPeople = [names, ages, genders];
+
+// 이런 형태로 저장됨
+// arrayPeople = [
+//   ['jun', 'ken', 'alex'],
+//   [15, 26, 37],
+//   ['M', 'F', null]
+// ]
+
+// names <- arrayPeople[0]
+// 'ken' <- names[1] <- arrayPeople[0][1]
