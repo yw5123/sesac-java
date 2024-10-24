@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo List</title>
+  <style>
+    .content {
+      width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .todoInput {
+      margin: 10px;
+    }
+    .todoInput input[type="text"] {
+      width: 80%
+    }
+    .todoLists {
+      margin: 20px;
+      padding-inline-start: initial;
+      list-style: none;
+    }
+    .todoLi {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <header><h1>ToDo List</h1></header>
+    <div class="todoInput">
+      <form>
+        <input type="text" id="todoInputText" name="todoInputText">
+        <input type="submit" value="추가">
+      </form>
+    </div>
+    <div>
+      <ul class="todoLists">
+        <li class="todoLi"><p>예습하기</p><input type="checkbox"></li><hr>
+        <li class="todoLi"><p>강의듣기</p><input type="checkbox"></li><hr>
+        <li class="todoLi"><p>복습하기</p><input type="checkbox"></li><hr>
+      </ul>
+    </div>
+  </div>
+  <script>
+
+  </script>
+</body>
+</html>
