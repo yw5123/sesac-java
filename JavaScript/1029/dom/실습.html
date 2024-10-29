@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .font {
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 글씨를 "hello dom"으로 변경하시오 -->
+    <div id="text">Hello World!</div>
+
+    <!-- background-color를 red로, height, width를 100px로 변경하시오 -->
+    <div id="box">Hello World!</div>
+
+    <!-- 글씨 크기를 3rem으로 바꾸시오 -->
+    <div id="size">글씨</div>
+
+    <!-- li태그들의 font 크기를 3rem으로 바꾸시오 -->
+    <ul>
+      <li class="list">hello</li>
+      <li class="list">world</li>
+      <li class="list">css</li>
+      <li class="list">javascript</li>
+    </ul>
+    <script>
+      // html은 수정하지 않고 주석 내용 반영하기
+
+      const text = document.querySelector('#text');
+      text.textContent = "hello dom";
+
+      const box = document.querySelector('#box');
+      box.style.backgroundColor = 'red';
+      box.style.width = '100px';
+      box.style.height = '100px';
+
+      // 처음에 id를 지정하지 않으셔서 이렇게 작성했는데
+      // 실습 중간에 id를 추가하심
+      // const divs = document.querySelectorAll('div');
+      // divs[2].classList.add('font');
+
+      const size = document.querySelector('#size');
+      size.classList.add('font');
+
+      const liTags = document.querySelectorAll('.list');
+      liTags.forEach((list) => list.classList.add('font'));
+    </script>
+  </body>
+</html>
