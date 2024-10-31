@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <button onclick="setDogImg()">다른 강쥐 보기</button><br><br> -->
+  <button id="changeImgBtn">다른 강쥐 보기</button><br><br>
+  <img src="" id="dogImg" style="width: 500px;">
+  <script>
+    const dogImg = document.querySelector('#dogImg');
+    const changeImgBtn = document.querySelector('#changeImgBtn');
+    
+    async function setDogImg() {
+      const response = await fetch("https://dog.ceo/api/breeds/image/random");
+      const data = await response.json();
+      const imgUrl = data.message;
+      dogImg.setAttribute('src', imgUrl);
+    }
+
+    changeImgBtn.addEventListener('click', (event) => {
+      setDogImg();
+    })
+
+    setDogImg();
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h2 {
+      text-align: center;
+      grid-area: 1 / 1 / 1 / 3;
+    }
+    #container {
+      width: 30rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 2rem;
+    }
+    .team {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      row-gap: 0.1rem;
+    }
+    .desk {
+      width: 95%;
+      height: 3rem;
+      border: 1px solid gray;
+      justify-self: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .empty {
+      border: 1px dotted gray;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body>
+  <!-- 우리반 배치도를 랜덤으로 돌리는 페이지 만들기 -->
+  <div id="container">
+    <h2>새싹 자리배치</h2>
+    <div class="team">
+      <div class="desk empty"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+    </div>
+    <div class="team">
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk empty"></div>
+    </div>
+    <div class="team">
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+      <div class="desk"></div>
+    </div>
+    <div class="team">
+      <div class="desk"></div>
+      <div class="desk empty"></div>
+      <div class="desk"></div>
+      <div class="desk empty"></div>
+      <div class="desk"></div>
+      <div class="desk empty"></div>
+    </div>
+  </div>
+  <script>
+    let classmates = ['가경식', '강경훈', '김동훈', '김상호', '노영재', '박재훈', '박종빈', '박하은', '서승덕', '오예진', '원성준', '육슬찬', '윤대정', '이상호', '이재현', '이태영', '임수빈', '임유진', '정명훈', '정승연', '정여원', '최원호', '차윤선'];
+
+    const desks = document.querySelectorAll('.desk');
+    desks.forEach((el) => {
+      if (el.classList.contains('empty')) return;
+      const index = _.random(classmates.length - 1);
+      el.textContent = classmates[index];
+      classmates.splice(index, 1);
+    })
+  </script>
+</body>
+</html>
+

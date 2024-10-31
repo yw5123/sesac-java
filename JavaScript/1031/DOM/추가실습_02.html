@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #randomColor {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body>
+  <!-- 랜덤한 색상을 가지는 100px 박스 div 생성(힌트: lodash, cdn, 색상은 rgb(r, g, b)) -->
+  <div id="randomColor"></div>
+  <script>
+    const randomDiv = document.querySelector('#randomColor');
+    randomDiv.style.backgroundColor = `rgb(${_.random(255)},${_.random(255)}, ${_.random(255)})`;
+  </script>
+</body>
+</html>
