@@ -14,7 +14,7 @@
 // }
 // --- 
 
-
+    
 // API 베이스 URL
 const URL = 'http://localhost:3000/todos';
 
@@ -38,7 +38,7 @@ async function setTodos() {
   const todos = response.data;
   
   for (const todo of todos) {
-    showTodo(todo.id, todo.content, todo.completed);
+    showTodo(todo);
   };
 }
 
@@ -52,18 +52,19 @@ async function AddTodo() {
   }
 
   const response = await axios.post(URL, newTodo);
-  showTodo(response.data.id, todoText);
+  showTodo(response.data);
   todoInput.value = '';
 }
 
-function showTodo(id, content, completed = false) {
+function showTodo(data) {
+  const { id, content, completed } = data;
   const todoUl = document.querySelector('#todo-list');
 
-  const todoDiv = document.createElement('div');
+  const todoDiv = document.createElement('li');
   todoDiv.id = `todo${id}`;
   todoDiv.classList.add('todoLi');
 
-  const todoText = document.createElement('div');
+  const todoText = document.createElement('span');
   todoText.textContent = content;
   if (completed) todoText.classList.add('completed');
   todoDiv.append(todoText);
@@ -71,12 +72,12 @@ function showTodo(id, content, completed = false) {
   const btnDiv = document.createElement('div');
   btnDiv.classList.add('btnDiv');
 
-  const successBtn = document.createElement('button');
-  successBtn.textContent = '완료';
-  successBtn.addEventListener('click', function() {
-    changeTodo(id, content);
+  const completeBtn = document.createElement('button');
+  completeBtn.textContent = '완료';
+  completeBtn.addEventListener('click', function() {
+    changeTodo(id);
   })
-  btnDiv.append(successBtn);
+  btnDiv.append(completeBtn);
 
 
   const deleteBtn = document.createElement('button');
@@ -90,16 +91,21 @@ function showTodo(id, content, completed = false) {
   todoUl.append(todoDiv);
 }
 
-async function changeTodo(id, content) {
+async function changeTodo(id) {
   const todo = document.querySelector(`#todo${id}`);
-  const completedStatus = todo.querySelector('div').classList.contains('completed');
 
-  const changedTodo = {
-    completed: !completedStatus
-  }
-  const response = await axios.patch(`${URL}/${id}`, changedTodo);
+  // // 1. class에 completed가 있는지 여부로 판단
+  // const isCompleted = todo.querySelector('span').classList.contains('completed');
+  
+  // 2. get method로 현재 completed 값을 받아와서 사용 => DB 관점에서는 더 좋음
+  const responseGet = await axios.get(`${URL}/${id}`);
+  const isCompleted = responseGet.data.completed;
 
-  todo.querySelector('div').classList.toggle('completed');
+  const response = await axios.patch(`${URL}/${id}`, {
+    completed: !isCompleted
+  });
+
+  todo.querySelector('span').classList.toggle('completed');
 }
 
 async function deleteTodo(id) {
