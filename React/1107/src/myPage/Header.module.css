@@ -1,0 +1,13 @@
+.myHeader {
+  background-color: gainsboro;
+  display: flex;
+  justify-content: space-between;
+}
+
+.myHeader div {
+  display: flex;
+}
+
+.myHeader span {
+  margin: 0.5rem;
+}
