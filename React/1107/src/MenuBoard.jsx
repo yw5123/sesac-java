@@ -22,22 +22,22 @@ export default function MenuBoard() {
   //   return <Menu menu={ade.menu} price={ade.price}></Menu>
   // });
 
-  const menus = [
-    { name: "아메리카노", price: "5.0/5.5", type: "coffee" },
-    { name: "카페라떼", price: "6.0/6.5", type: "coffee" },
-    { name: "바닐라라떼", price: "6.0/6.5", type: "coffee" },
-    { name: "카라멜마끼아또", price: "6.5/7.0", type: "coffee" },
-    { name: "레몬에이드", price: "6.0", type: "ade" },
-    { name: "자몽에이드", price: "6.0", type: "ade" },
-    { name: "유자에이드", price: "6.0", type: "ade" },
+  const beverages = [
+    { name: "아메리카노", price: "5.0/5.5", category: "coffee" },
+    { name: "카페라떼", price: "6.0/6.5", category: "coffee" },
+    { name: "바닐라라떼", price: "6.0/6.5", category: "coffee" },
+    { name: "카라멜마끼아또", price: "6.5/7.0", category: "coffee" },
+    { name: "레몬에이드", price: "6.0", category: "ade" },
+    { name: "자몽에이드", price: "6.0", category: "ade" },
+    { name: "유자에이드", price: "6.0", category: "ade" },
   ]
 
-  const mappedCoffees = menus.filter((menu) => menu.type === "coffee").map((menu) => {
+  const mappedCoffees = beverages.filter((menu) => menu.category === "coffee").map((menu) => {
     const { name, price } = menu;
     return <Menu menu={name} price={price}></Menu>
   })
   
-  const mappedAdes = menus.filter((menu) => menu.type === "ade").map((menu) => {
+  const mappedAdes = beverages.filter((menu) => menu.category === "ade").map((menu) => {
     const { name, price } = menu;
     return <Menu menu={name} price={price}></Menu>
   })
