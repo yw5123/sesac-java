@@ -2,14 +2,18 @@ import { useState } from 'react'
 import styles from './like.module.css'
 
 export default function LikePractice() {
-  const [isLike, setIsLike] = useState(false)
+  const [isLiked, setIsLiked] = useState(false)
 
   return(
     <div style={{margin: 10}}>
-      <button onClick={(e) => {
-        setIsLike(isLike ? false : true);
-        e.target.className = isLike ? styles.isLike : styles.isNotLike;
-      }}>{isLike ? "좋아요 취소" : "좋아요"}</button>
+      <button 
+        className={isLiked ? styles.isLike : styles.isNotLike}
+        onClick={(e) => {
+          // setIsLiked(isLiked ? false : true);
+          setIsLiked((prev) => !prev);
+
+          // e.target.className = isLiked ? styles.isLiked : styles.isNotLiked;
+      }}>{isLiked ? "좋아요 취소" : "좋아요"}</button>
     </div>
   )
 }
