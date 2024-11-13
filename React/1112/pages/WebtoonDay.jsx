@@ -1,7 +1,12 @@
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 
 export default function WebtoonDay() {
   const { day } = useParams();
+  const weekData = new Set(["mon", "tue", "wed", "thu", "fri", "sat", "sun"]);
+  
+  if (!weekData.has(day)) {
+    return <Navigate to="/webtoon" replace></Navigate>
+  }
 
   let dayKorean
   switch (day) {
