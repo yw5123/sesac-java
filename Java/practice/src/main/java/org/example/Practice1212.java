@@ -2,8 +2,12 @@ package org.example;
 
 // 클래스 실습 - 실습 + 코드 리뷰
 
+// 같은 파일에 class 여러개 만들면 안 좋지만
+// 파일이 너무 많아져서 그냥 한 파일에 작성함(..)
+
 public class Practice1212 {
     public static void main(String[] args) {
+        // Person
         // 이름이 jun이고 나이가 18살인 인스턴스 생성
         Person jun = new Person("jun", 18);
         Person jun2 = new Person("jun", 18);
@@ -11,14 +15,17 @@ public class Practice1212 {
         System.out.println(jun.age);    // 18
         System.out.println(jun == jun2);    // false => jun과 jun2는 다른 객체
 
+        // Dog
         Dog happy = new Dog("Jindo", "Happy");
         happy.sitDown();    // Happy, sit down
         happy.giveHand();   // Happy, hand
 
+        // Triangle
         Triangle smallTriangle = new Triangle(4);
         System.out.println(smallTriangle.circumference);     // 12
         System.out.println(smallTriangle.calculateArea());   // 7 혹은 6.93 (주석 처리한 방법에 따라)
 
+        // Car
         Car myCar = new Car("Avante");
         myCar.showInfo();    // CAR <Avante>'s speed is 0
         myCar.speedUp();
@@ -27,6 +34,7 @@ public class Practice1212 {
         myCar.speedDown();
         myCar.showInfo();    // CAR <Avante>'s speed is 20
 
+        // MP3Player
         MP3Player iPod = new MP3Player("iPod");
         iPod.showInfo();     // MP3 <iPod> (Off) - volume: 0
         iPod.pushPowerButton();
@@ -38,6 +46,7 @@ public class Practice1212 {
         iPod.pushPowerButton();
         iPod.showInfo();     // MP3 <iPod> (Off) - volume: 0
 
+        // Calculator
         Calculator cal = new Calculator(10, 4);
         System.out.println(cal.add());  // 14
         System.out.println(cal.sub());  // 6
@@ -45,9 +54,6 @@ public class Practice1212 {
         System.out.println(cal.div());  // 2.5
     }
 }
-
-// 같은 파일에 class 여러개 만들면 안 좋지만
-// 실습 파일이 많아지는 게 싫어서 그냥 한 파일에 작성함(..)
 
 //이름, 나이를 가지고 있는 Person 클래스를 구현하시오.
 class Person {
