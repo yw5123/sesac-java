@@ -15,33 +15,76 @@ package org.example.modifierprac;
 
 public class BankAccount {
     private int balance;
-    private int password;
+    private String password;
 
-    BankAccount(int password) {
+    // 계좌 생성 (비밀번호 설정)
+    BankAccount(String password) {
         this.balance = 0;
         this.password = password;
     }
 
+    // 입금
     public boolean deposit(int amount) {
+        // 금액 확인
+        if (!validateAmount(amount)) {
+            System.out.println("cannot deposit");
+            return false;
+        }
         balance += amount;
+        System.out.println(amount +"won is deposited");
         return true;
     }
 
-    public boolean withdrawal(int amount, int password) {
-        // 1. 패스워드가 일치하거나
-        // 2. 남은 예금이 출금할 금액보다 많으면
-        // 3. 출금
-        if (this.password == password && amount <= balance) {
-            balance -= amount;
-            return true;
+    // 출금
+    public boolean withdrawal(int amount, String password) {
+        // 비밀번호 확인
+        if (!validatePassword(password)) {
+            System.out.println("invalid password");
+            return false;
         }
-        return false;
+
+        // 금액 확인
+        if (!validateAmount(amount)) {
+            return false;
+        }
+
+        // 잔고 확인
+        if (amount > balance) {
+            System.out.println("cannot withdraw");
+            return false;
+        }
+
+        System.out.println(amount + "won is withdrawed");
+        balance -= amount;
+        return true;
     }
 
-    public int getBalance(int password) {
-        if (this.password == password) {
-            return balance;
+    // 잔액 조회
+    public int getBalance(String password) {
+        if (!validatePassword(password)) {
+            System.out.println("invalid password");
+            return -1;
         }
-        return -1;
+        System.out.println("balance: " + balance);
+        return balance;
+    }
+
+    // 입금 출금 금액 검증
+    private boolean validateAmount(int amount) {
+        return amount > 0;
+    }
+
+    // 비밀번호 검증
+    private boolean validatePassword(String password) {
+        return this.password.equals(password);
+    }
+
+    public static boolean validateInitialPassword(String password) {
+        if (password.length() >= 4) {
+            return true;
+        } else {
+            System.out.println("password is too short");
+            return false;
+        }
     }
 }

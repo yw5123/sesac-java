@@ -18,24 +18,35 @@ public class Main {
         person.walk();      // walking..
         person.study();     // studying..
 
+
         // BankAccount
-        BankAccount bankAccount = new BankAccount(1234);
-        System.out.println(bankAccount.getBalance(1234));   // 0
+        String myPassword = "1234";
+        BankAccount bankAccount = new BankAccount(myPassword);
+        System.out.println(bankAccount.getBalance(myPassword));   // balance: 0 / 0
 
         // 입금
-        bankAccount.deposit(100000);
-        System.out.println(bankAccount.getBalance(1234));   // 100000
+        bankAccount.deposit(100000);    // 100000won is deposited
+        System.out.println(bankAccount.getBalance(myPassword));   // balance: 100000 / 100000
 
         // 출금 - 비밀번호 오류
-        bankAccount.withdrawal(10000, 1235);
-        System.out.println(bankAccount.getBalance(1234));   // 100000
+        String wrongPassword = "1235";
+        bankAccount.withdrawal(10000, wrongPassword);      // invalid password
+        System.out.println(bankAccount.getBalance(myPassword));   // balance: 100000 / 100000
 
         // 입금
-        bankAccount.deposit(100000);
-        System.out.println(bankAccount.getBalance(1234));   // 200000
+        bankAccount.deposit(100000);    // 100000won is deposited
+        System.out.println(bankAccount.getBalance(myPassword));   // balance: 200000 / 200000
 
         // 출금
-        bankAccount.withdrawal(40000, 1234);
-        System.out.println(bankAccount.getBalance(1234));   // 160000
+        bankAccount.withdrawal(40000, myPassword);  // 40000won is withdrawed
+        System.out.println(bankAccount.getBalance(myPassword));   // balance: 160000 / 160000
+
+
+        // 계좌 생성 시비밀번호 검증 등 고려해야 함
+        if (BankAccount.validateInitialPassword(myPassword)) {
+            BankAccount bankAccount2 = new BankAccount(myPassword);
+        } else {
+            System.out.println("failed");
+        }
     }
 }
