@@ -1,6 +1,6 @@
 package org.example.compositionprac;
 
-public class Car {
+public class Car implements Tool {
     String model;
     int speed;
     Engine engine;
@@ -17,4 +17,8 @@ public class Car {
     }
 
 
+    @Override
+    public void use() {
+        increaseSpeed();
+    }
 }
