@@ -39,14 +39,28 @@ public class Main {
 
         // Engine - Car
         Engine engine1 = new Engine(6);
+        Engine engine2 = new Engine(10);
+
         Car hyundai = new Car("hyundai", engine1);
+        Car bmw = new Car("bmw", engine2);
+
         hyundai.increaseSpeed();
         System.out.println("현재 속도는 " + hyundai.speed);    // 현재 속도는 36
 
-        Engine engine2 = new Engine(10);
-        Car bmw = new Car("bmw", engine2);
         bmw.increaseSpeed();
         System.out.println("현재 속도는 " + bmw.speed);   // 현재 속도는 100
+
+
+        // Person을 new Person(name, 도구) 으로 생성하고
+        // person.use() 했을 때 pencil을 갖고 있으면 연필을 사용하고 car를 갖고 있으면 속력을 높이게 확장
+        Pencil purple = new Pencil("purple");
+        Person beemo = new Person("beemo", purple);
+        beemo.use();        // 글씨를 쓴다. - purple색 연필로 씀
+
+        beemo.tool = hyundai;
+        System.out.println("현재 속도는 " + hyundai.speed);  // 현재 속도는 36
+        beemo.use();
+        System.out.println("현재 속도는 " + hyundai.speed);  // 현재 속도는 72
 
 
         // Weapon - Character
@@ -63,5 +77,12 @@ public class Main {
 
         duck.setWeapon();
         duck.attack();  // attack! - 3
+
+        // specialAttack(SA) 구현 방법
+        // 1. 강사님은 실습하면서 Weapon과 SAable을 따로 분리 => Gun, Sword가 Weapon과 SA를 상속받음
+        //    Character가 Weapon을 받아서 SA 사용 불가능
+        //    => Character의 SA 메서드 내부에서 Weapon이 SAable을 구현하는지 확인 (instanceof 연산자 사용)
+        // 2. Weapon과 SA를 분리하지 않고 합침 => Weapon은 기본 SA로 아무것도 안 함을 가짐
+        // 3. Weapon이 SA를 compostion으로 가짐 => SA이 null인지 확인
     }
 }

@@ -1,4 +1,4 @@
-package org.example.collection;
+package org.example.collectionprac;
 
 import java.util.HashMap;
 import java.util.Set;
