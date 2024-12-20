@@ -33,21 +33,26 @@ public class Main {
         beemo.saveGrade("java", 60);
         beemo.saveGrade("python", 90);
         beemo.saveGrade("c++", 50);
+
+        beemo.showInfo();   // 이름: beemo / 나이: 19 / 성적: {python=90, c++=50, java=60}
         System.out.println("평균 점수: " + beemo.getAverage());     // 평균 점수: 66.66666666666667
 
         Student lynda = new Student("lynda", 17);
         lynda.saveGrade("python", 100);
         lynda.saveGrade("java", 90);
+
+        lynda.showInfo();   // 이름: lynda / 나이: 17 / 성적: {python=100, java=90}
         System.out.println("평균 점수: " + lynda.getAverage());     // 평균 점수: 95.0
 
         StudentManager manager = new StudentManager();
         manager.addStudent(beemo);
         manager.addStudent(lynda);
-        manager.findStudent("lynda");   // Student {name='lynda', age=17, grades={python=100, java=90}}
-        manager.findStudent("jun");     // 이름이 jun인 학생이 없습니다.
 
         manager.showStudentsInfo();
-        // Student {name='beemo', age=19, grades={python=90, c++=60, java=70}}
-        // Student {name='lynda', age=17, grades={python=100, java=90}}
+        // 이름: beemo / 나이: 19 / 성적: {python=90, c++=50, java=60}
+        // 이름: lynda / 나이: 17 / 성적: {python=100, java=90}
+
+        System.out.println(manager.findStudentByName("lynda")); // Student {name='lynda', age=17, grades={python=100, java=90}}
+        System.out.println(manager.findStudentByName("jun"));   // 이름이 jun인 학생이 없습니다. / null
     }
 }

@@ -1,19 +1,30 @@
 package org.example.collectionprac;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Student {
     String name;
     int age;
-    HashMap<String, Integer> grades = new HashMap<>();
+    Map<String, Integer> grades;
 
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
+        this.grades = new HashMap<>();
     }
 
-    public void saveGrade(String subject, int grade) {
-        grades.put(subject, grade);
+    // 과목&성적을 받는다 => grade에 추가한다 => 1. grade return / 2. void return
+    public Map<String, Integer> saveGrade(String subject, Integer score) {
+        grades.put(subject, score);
+
+        return grades;
+    }
+
+    public void showInfo() {
+        System.out.println("이름: " + name);
+        System.out.println("나이: " + age);
+        System.out.println("성적: " + grades);
     }
 
     public double getAverage() {
