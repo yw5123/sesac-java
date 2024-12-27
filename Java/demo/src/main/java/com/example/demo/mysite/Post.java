@@ -5,6 +5,10 @@ public class Post {
     private String title;
     private String content;
 
+    public Post() {
+
+    }
+
     public Post(Long id, String title, String content) {
         this.id = id;
         this.title = title;
