@@ -1,11 +1,20 @@
 package com.example.demo.mysite.postMVC;
 
 import com.example.demo.mysite.Post;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PostService {
-    PostRepository postRepository = new PostRepository();
+//    PostRepository postRepository = new PostRepository();
+
+    // DI
+    private final PostRepository postRepository;
+
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     public Post createPost(Post newPost) {
 //        // validate 체크를 한 후에 비즈니스 로직 처리
