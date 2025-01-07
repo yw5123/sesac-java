@@ -1,5 +1,6 @@
 package com.example.demo.myuser;
 
+import com.example.demo.myuser.dto.UserUpdateRequestDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -34,6 +35,13 @@ public class User extends BaseTimeEntity {
         this.email = email;
         this.nickname = nickname;
         this.age = age;
+    }
+
+    public User update(UserUpdateRequestDto requestDto) {
+        this.email = requestDto.getEmail();
+        this.nickname = requestDto.getNickname();
+
+        return this;
     }
 }
 

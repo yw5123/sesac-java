@@ -3,6 +3,7 @@ package com.example.demo.myuser;
 import com.example.demo.myuser.dto.UserCreateRequestDto;
 import com.example.demo.myuser.dto.UserListResponseDto;
 import com.example.demo.myuser.dto.UserResponseDto;
+import com.example.demo.myuser.dto.UserUpdateRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,5 +37,22 @@ public class UserController {
     @GetMapping("/{username}")
     public ResponseEntity<ApiResponse<UserResponseDto>> readUserByUsername(@PathVariable String username) {
         return ResponseEntity.ok(ApiResponse.ok(userService.readUserByUsername(username)));
+    }
+
+    @PutMapping("/{username}")
+    public ResponseEntity<ApiResponse<UserResponseDto>> updateUser(@PathVariable String username, @RequestBody UserUpdateRequestDto requestDto) {
+        return ResponseEntity.ok(ApiResponse.ok(userService.updateUser(username, requestDto)));
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return ResponseEntity.ok(
+                ApiResponse.ok(
+                        "사용자가 정상적으로 삭제되었습니다.",
+                        "DELETED",
+                        null
+                )
+        );
     }
 }

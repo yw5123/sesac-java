@@ -6,6 +6,7 @@ package com.example.demo.myuser.exceptions;
 
 import com.example.demo.myjpasitev4.ApiResponse;
 import com.example.demo.myjpasitev4.exceptions.ResourceNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
