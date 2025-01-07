@@ -55,4 +55,17 @@ public class UserController {
                 )
         );
     }
+
+    // 특정 닉네임을 가진 사용자 조회
+    // 특정 나이의 사용자 조회
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<List<UserResponseDto>>> searchUsers(
+            @RequestParam(required = false) String nickname,
+            @RequestParam(required = false) Integer age
+    ) {
+        List<UserResponseDto> data = userService.searchUsers(nickname, age);
+        ApiResponse<List<UserResponseDto>> response = ApiResponse.ok(data);
+
+        return ResponseEntity.ok(response);
+    }
 }

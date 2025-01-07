@@ -55,4 +55,30 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException());
         userRepository.delete(user);
     }
+
+    // Search
+    public List<UserResponseDto> searchUsers(String nickname, Integer age) {
+        if (nickname != null && age != null) {
+            return userRepository.findByNicknameAndAge(nickname, age).stream()
+                    .map(UserResponseDto::from)
+                    .toList();
+        }
+
+        if (nickname != null) {
+            return userRepository.findByNickname(nickname).stream()
+                    .map(UserResponseDto::from)
+                    .toList();
+        }
+
+        if (age != null) {
+            return userRepository.findByAge(age).stream()
+                    .map(UserResponseDto::from)
+                    .toList();
+        }
+
+        // 파라미터가 없으면 모든 유저 반환
+        return userRepository.findAll().stream()
+                .map(UserResponseDto::from)
+                .toList();
+    }
 }

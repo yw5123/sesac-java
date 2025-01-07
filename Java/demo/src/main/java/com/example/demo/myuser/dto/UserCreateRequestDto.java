@@ -19,7 +19,7 @@ public class UserCreateRequestDto {
     private String nickname;
 
     @Min(value = 0) @Max(value = 150)
-    private Integer age;
+    private int age;
 
     public User toEntity() {
         return User.builder()

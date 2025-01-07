@@ -12,7 +12,7 @@ public class UserResponseDto {
     private final String username;
     private final String email;
     private final String nickname;
-    private final Integer age;
+    private final int age;
     private final Boolean isActive;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;

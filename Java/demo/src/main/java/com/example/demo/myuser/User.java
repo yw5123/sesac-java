@@ -24,13 +24,13 @@ public class User extends BaseTimeEntity {
     private String nickname;
 
     @Column
-    private Integer age;
+    private int age;
 
     @Column(nullable = false, columnDefinition = "boolean default true")
     private Boolean isActive = true;
 
     @Builder
-    public User(String username, String email, String nickname, Integer age) {
+    public User(String username, String email, String nickname, int age) {
         this.username = username;
         this.email = email;
         this.nickname = nickname;
