@@ -30,4 +30,13 @@ public class CommentController {
                         )
                 );
     }
+
+    @PutMapping("/{commentId}")
+    public CommentResponseDto updateComment(
+            @PathVariable Long postId,
+            @PathVariable Long commentId,
+            @Valid @RequestBody CommentRequestDto requestDto
+    ) {
+        return commentService.updateComment(postId, commentId, requestDto);
+    }
 }
