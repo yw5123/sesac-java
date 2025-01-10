@@ -5,12 +5,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"post_id", "tag_id"}))
 @Getter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class PostTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +37,11 @@ public class PostTag {
 
     public void addTag(Tag tag) {
         this.tag = tag;
+    }
+
+
+    public PostTag(Post post, Tag tag) {
+        this.addPost(post);
+        this.addTag(tag);
     }
 }

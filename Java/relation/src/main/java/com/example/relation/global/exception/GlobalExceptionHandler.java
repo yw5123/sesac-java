@@ -1,5 +1,6 @@
 package com.example.relation.global.exception;
 
+import com.example.relation.domain.post.exceptions.DuplicateEntityException;
 import com.example.relation.global.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,6 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error(ex.getMessage(), "NOT_FOUND"));
     }
-
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleNotFoundException(NoHandlerFoundException ex) {
@@ -60,7 +60,6 @@ public class GlobalExceptionHandler {
                 ));
     }
 
-
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiResponse<Void>> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex) {
 
@@ -70,6 +69,7 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error("method not allowed", "METHOD_NOT_ALLOWED"));
 
     }
+
 //    @ExceptionHandler(Exception.class)
 //    public ResponseEntity<ApiResponse<Void>> handleGeneralException(Exception ex) {
 //        return ResponseEntity
@@ -77,4 +77,10 @@ public class GlobalExceptionHandler {
 //                .body(ApiResponse.error("서버 내부 오류가 발생했습니다.", "INTERNAL_SERVER_ERROR"));
 //    }
 
+    @ExceptionHandler(DuplicateEntityException.class)
+    public ResponseEntity<ApiResponse<Void>> handleUserNotFound(DuplicateEntityException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error(ex.getMessage(), "DUPLICATE_ENTITY"));
+    }
 }

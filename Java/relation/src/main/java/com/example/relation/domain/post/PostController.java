@@ -100,6 +100,13 @@ public class PostController {
                 postService.readPostBtIdWithCommentAndTagV2(id)
         ));
     }
+
+    @GetMapping("/tags")
+    public ResponseEntity<ApiResponse<List<PostListResponseDto>>> readPostByTag(@RequestParam String tag) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                postService.readPostByTag(tag)
+        ));
+    }
 }
 
 

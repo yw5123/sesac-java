@@ -5,6 +5,7 @@ import com.example.relation.domain.comment.CommentRepository;
 import com.example.relation.domain.post.dto.*;
 import com.example.relation.domain.post.entity.Post;
 import com.example.relation.domain.post.entity.PostTag;
+import com.example.relation.domain.post.exceptions.DuplicateEntityException;
 import com.example.relation.domain.post.repository.PostRepository;
 import com.example.relation.domain.post.repository.PostTagRepository;
 import com.example.relation.domain.tag.Tag;
@@ -92,14 +93,26 @@ public class PostService {
     @Transactional
     public void addTagToPost(Long id, TagRequestDto requestDto) {
         Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
-        Tag tag = tagRepository.findByName(requestDto.getName()).orElseThrow(() -> new ResourceNotFoundException());
+//        Tag tag = tagRepository.findByName(requestDto.getName()).orElseThrow(() -> new ResourceNotFoundException());
+//
+//        PostTag postTag = new PostTag();
+//
+//        postTag.addTag(tag);
+//
+//        postTag.addPost(post);
+//        post.getPostTags().add(postTag);
 
-        PostTag postTag = new PostTag();
+        Tag tag = tagRepository.findByName(requestDto.getName())
+                        .orElseGet(() -> {
+                            Tag newTag = new Tag(requestDto.getName());
+                            return tagRepository.save(newTag);
+                        });
 
-        postTag.addTag(tag);
+        if (postTagRepository.existsByPostAndTag(post, tag)) {
+            throw new DuplicateEntityException();
+        }
 
-        postTag.addPost(post);
-        post.getPostTags().add(postTag);
+        PostTag postTag = new PostTag(post, tag);
 
         postTagRepository.save(postTag);
     }
@@ -119,5 +132,11 @@ public class PostService {
         Post post = postRepository.findByIdWithCommentAndTag(id).orElseThrow(() -> new ResourceNotFoundException());
 
         return PostWithCommentAndTagResponseDtoV2.from(post);
+    }
+
+    public List<PostListResponseDto> readPostByTag(String tag) {
+        return postRepository.findAllByTagName(tag).stream()
+                .map(PostListResponseDto::from)
+                .toList();
     }
 }
