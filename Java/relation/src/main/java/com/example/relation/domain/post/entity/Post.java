@@ -4,10 +4,7 @@ import com.example.relation.domain.comment.Comment;
 import com.example.relation.domain.post.dto.PostUpdateRequestDto;
 import com.example.relation.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
@@ -29,10 +26,13 @@ public class Post extends BaseTimeEntity {
 
     private String author;
 
+    @Setter
+    private String imageUrl;
+
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-//    @BatchSize(size = 100)    // 글로벌 설정하고 원하는 위치에서만 개별 설정도 가능
+    @BatchSize(size = 100)    // 글로벌 설정하고 원하는 위치에서만 개별 설정도 가능
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<PostTag> postTags = new ArrayList<>();
 

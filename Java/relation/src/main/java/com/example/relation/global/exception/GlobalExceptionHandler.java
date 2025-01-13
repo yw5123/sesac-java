@@ -2,6 +2,7 @@ package com.example.relation.global.exception;
 
 import com.example.relation.domain.post.exceptions.DuplicateEntityException;
 import com.example.relation.global.response.ApiResponse;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -16,6 +17,12 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(FileUploadException.class)
+    public ResponseEntity<ApiResponse<Object>> handleFileUpload(FileUploadException ex) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ApiResponse.error(ex.getMessage(), "INTERNAL_SERVER_ERROR"));
+    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleUserNotFound(ResourceNotFoundException ex) {

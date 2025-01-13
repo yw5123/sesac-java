@@ -5,9 +5,11 @@ import com.example.relation.domain.tag.dto.TagRequestDto;
 import com.example.relation.global.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -107,6 +109,38 @@ public class PostController {
                 postService.readPostByTag(tag)
         ));
     }
+
+    @GetMapping("/pages")
+    public ResponseEntity<ApiResponse<List<PostListResponseDto>>> readPostsWithPage(Pageable pageable) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                postService.readPostsWithPage(pageable)
+        ));
+    }
+
+    @GetMapping("/pages/detail")
+    public ResponseEntity<ApiResponse<PostListWithPageResponseDto>> readPostWithPageDetail(Pageable pageable) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                postService.readPostWithPageDetail(pageable)
+        ));
+    }
+
+    @GetMapping("/detail/pages")
+    public ResponseEntity<ApiResponse<List<PostWithCommentResponseDtoV2>>> readPostsWithCommentPage(Pageable pageable) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                postService.readPostsWithCommentPage(pageable)
+        ));
+    }
+
+    @PostMapping("/images")
+    public ResponseEntity<ApiResponse<PostWithImageResponseDto>> createPostWithImage(
+            @RequestPart(value = "data") PostCreateRequestDto requestDto,
+            @RequestPart(value = "image", required = false) MultipartFile image
+    ) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                postService.createPostWithImage(requestDto, image)
+        ));
+    }
+
 }
 
 
