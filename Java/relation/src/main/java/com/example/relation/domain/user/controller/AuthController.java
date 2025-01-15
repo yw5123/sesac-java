@@ -1,7 +1,9 @@
 package com.example.relation.domain.user.controller;
 
+import com.example.relation.domain.user.dto.request.LoginRequestDto;
 import com.example.relation.domain.user.dto.request.SignupRequestDto;
 import com.example.relation.domain.user.dto.response.SignupResponseDto;
+import com.example.relation.domain.user.dto.response.TokenResponseDto;
 import com.example.relation.domain.user.service.AuthService;
 import com.example.relation.global.response.ApiResponse;
 import jakarta.validation.Valid;
@@ -28,5 +30,14 @@ public class AuthController {
                 .body(ApiResponse.ok(
                         authService.signup(requestDto)
                         ));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<TokenResponseDto>> login(
+            @Valid @RequestBody LoginRequestDto requestDto
+            ) {
+        return ResponseEntity.ok(ApiResponse.ok(
+                authService.login(requestDto)
+        ));
     }
 }
