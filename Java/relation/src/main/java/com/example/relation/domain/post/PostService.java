@@ -6,11 +6,13 @@ import com.example.relation.domain.post.dto.*;
 import com.example.relation.domain.post.entity.Post;
 import com.example.relation.domain.post.entity.PostTag;
 import com.example.relation.domain.post.exceptions.DuplicateEntityException;
+import com.example.relation.domain.post.repository.Post2Repository;
 import com.example.relation.domain.post.repository.PostRepository;
 import com.example.relation.domain.post.repository.PostTagRepository;
 import com.example.relation.domain.tag.Tag;
 import com.example.relation.domain.tag.TagRepository;
 import com.example.relation.domain.tag.dto.TagRequestDto;
+import com.example.relation.domain.user.entity.User;
 import com.example.relation.global.exception.ResourceNotFoundException;
 import com.example.relation.global.service.FileService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,8 @@ public class PostService {
     private final TagRepository tagRepository;
     private final PostTagRepository postTagRepository;
     private final FileService fileService;
+
+    private final Post2Repository post2Repository;
 
     @Transactional
     public PostResponseDto createPost(PostCreateRequestDto requestDto) {
@@ -182,6 +186,16 @@ public class PostService {
 
         return PostWithImageResponseDto.from(
                 postRepository.save(post)
+        );
+    }
+
+    @Transactional
+    public Post2ResponseDto createPost2(
+            Post2CreateWithAuthorRequestDto requestDto,
+            User user
+    ) {
+        return Post2ResponseDto.from(
+                post2Repository.save(requestDto.toEntity(user))
         );
     }
 }
