@@ -30,7 +30,7 @@ public class Post extends BaseTimeEntity {
     private String imageUrl;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private List<Comment> comments;
+    private List<Comment> comments = new ArrayList<>();
 
     @BatchSize(size = 100)    // 글로벌 설정하고 원하는 위치에서만 개별 설정도 가능
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
