@@ -18,6 +18,12 @@ const postApi = {
     const response = await api.post(ENDPOINT, formData);
     return response;
   },
+
+  // 댓글 작성
+  createComment: async (postId, formData) => {
+    const response = await api.post(`${ENDPOINT}/${postId}/comments`, formData);
+    return response;
+  },
 };
 
 export default postApi;
