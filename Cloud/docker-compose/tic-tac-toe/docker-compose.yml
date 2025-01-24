@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  tic-tac-toe:
+    container_name: tic-tac-toe-container
+    # --name tic-tac-toe-container
+    build:
+      # Dockerfile 기반으로 이미지 빌드
+      context: ./
+      dockerfile: Dockerfile
+    image: tic-tac-toe-image:latest
+    # build 블록과 image 블록을 함께 쓰면
+    # image 블록은 이미지의 이름을 의미
+    ports:
+      - "80:80"
